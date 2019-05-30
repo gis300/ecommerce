@@ -31,10 +31,6 @@
             </div>
             <div class="form-group">
               <label for="deslogin">Login</label>
-              <input type="text" class="form-control" id="deslogin" name="desperson" placeholder="Digite o Login">
-            </div>
-            <div class="form-group">
-              <label for="deslogin">Login</label>
               <input type="text" class="form-control" id="deslogin" name="deslogin" placeholder="Digite o login">
             </div>
             <div class="form-group">
