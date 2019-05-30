@@ -7,6 +7,12 @@ use \Hcode\Model;
 class User extends Model {
 
 	const SESSION = "User";
+
+	protected $fields = [
+
+		"iduser", "idperson", "deslogin", "despassword", "inadmin", "dtregister", "desperson", "desemail"
+
+	];
 	
 	public static function login($login, $password){
 
@@ -76,6 +82,42 @@ class User extends Model {
 
 		return $sql -> select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) ORDER BY b.desperson");
 	}
+
+	public function get($iduser)
+	{
+	 
+	 $sql = new Sql();
+	 
+	 $results = $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.iduser = :iduser;", array(
+	 ":iduser"=>$iduser
+	 ));
+	 
+	 $data = $results[0];
+	 
+	 $this->setData($data);
+	 
+	 }
+
+	 public function save()
+	 {
+
+		$sql = new Sql();
+	 	
+		$results = $sql->select("CALL sp_users_save(:desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", array(
+			$this->getdesperson(),
+			$this->getdeslogin(),
+			$this->getdespassword(),
+			$this->getdesemail(),
+			$this->getnrphone(),
+			$this->getinadmin()
+
+		));
+
+		$this->setData($results[0]);
+
+
+
+	 }
 
 }
 
