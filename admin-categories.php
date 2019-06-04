@@ -2,6 +2,7 @@
 use \Hcode\PageAdmin;
 use \Hcode\Model\User;
 use \Hcode\Model\Category;
+use \Hcode\Page;
 
 $app->get("/admin/categories", function()
 {
